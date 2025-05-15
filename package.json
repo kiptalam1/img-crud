@@ -1,0 +1,31 @@
+{
+	"name": "img-crud",
+	"version": "1.0.0",
+	"description": "Uploading files using expressjs, multer, mongodb, and cloudinary",
+	"homepage": "https://github.com/kiptalam1/img-crud#readme",
+	"bugs": {
+		"url": "https://github.com/kiptalam1/img-crud/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kiptalam1/img-crud.git"
+	},
+	"license": "ISC",
+	"author": "Adams",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon index.js",
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"cloudinary": "^2.6.1",
+		"express": "^5.1.0",
+		"mongoose": "^8.14.3",
+		"multer": "^1.4.5-lts.2"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.10"
+	}
+}
