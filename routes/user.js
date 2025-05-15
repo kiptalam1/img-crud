@@ -4,6 +4,8 @@ import cloudinary from "../utils/cloudinary.js";
 import { upload } from "../utils/multer.js";
 import User from "../models/user.js";
 
+
+
 router.post("/", upload.single("image"), async (req, res) => {
 	try {
 		// upload file to cloudinary;
@@ -21,6 +23,35 @@ router.post("/", upload.single("image"), async (req, res) => {
 		res.json(result);
 	} catch (error) {
 		console.log("Upload error", error);
+	}
+});
+
+// get all users;
+router.get("/", async (req, res) => {
+	try {
+		const user = await User.find();
+		res.json(user);
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+// delete file from cloudinary;
+router.delete("/:id", async (req, res) => {
+	try {
+		const foundUser = await User.findById(req.params.id);
+		if (!foundUser)
+			return res.status(400).json({
+				success: false,
+				msg: "User not found",
+			});
+		await cloudinary.uploader.destroy(foundUser.cloudinaryId);
+		res.json({
+			msg: "File deleted successfully",
+			data: foundUser,
+		});
+	} catch (error) {
+		console.log("Cloudinary delete error", error);
 	}
 });
 
